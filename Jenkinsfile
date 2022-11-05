@@ -19,6 +19,16 @@ pipeline {
                 sh  'mvn compile'
                 }
                              }
+		stage('MVN PACKAGE'){
+		steps{
+                              sh  'mvn package'
+                          }
+                    }
+              stage('MVN Test'){
+                                              steps{
+                                                  sh  'mvn test'
+                                              }
+	      }
 
                              
 
