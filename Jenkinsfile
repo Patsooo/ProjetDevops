@@ -4,10 +4,7 @@ pipeline {
         stages{
             stage('Checkout GIT'){
                 steps{
-                    echo 'Pulling...';
-                    git branch: 'youssefback',
-                    credentialsId: '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',
-                    url : 'https://github.com/Patsooo/ProjetDevops.git';
+                    checkout([$class: 'GitSCM', branches: [[name: '*/youssefback']], extensions: [], userRemoteConfigs: [[credentialsId: '36d256fb-ac53-4780-8300-118e6c67c8bc', url: 'https://github.com/Patsooo/ProjetDevops.git']]])
                              }
                              }
 
