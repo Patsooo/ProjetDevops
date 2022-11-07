@@ -1,14 +1,49 @@
 pipeline {
-    agent any
-    stages {
-        stage('Cloning Project from Git') {
-            steps {
-                cleanWs()
-                git branch : 'main',
-                url : 'https://github.com/Patsooo/ProjetDevops.git',
-                credentialsId: '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';
+       agent any
+        stages{
+            stage('Checkout GIT'){
+                steps{
+                    checkout([$class: 'GitSCM', branches: [[name: '*/dhia']], extensions: [], userRemoteConfigs: [[credentialsId: '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', url: 'https://github.com/Patsooo/ProjetDevops.git']]])
+                             }
+	    }
+		     stage('MVN CLEAN')
+            {
+                steps{
+                sh  'mvn clean'
+                }
             }
-        }
-       
-    }
+            stage('MVN COMPILE')
+            {
+                steps{
+                sh  'mvn compile'
+                }
+                             }
+		stage('MVN PACKAGE'){
+		steps{
+                              sh  'mvn package'
+                          }
+                    }
+              stage('MVN Test'){
+                                              steps{
+                                                  sh  'mvn test'
+                                              }
+	      }
+		stage('MVN SONARQUBE ')
+                                            {
+                                                steps{
+                                                sh  'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=sonar'
+                                                }
+                                            }
+		
+
+                             
+
+
+
+
+
+
+
+	}
+
 }
