@@ -3,7 +3,7 @@ pipeline {
         stages{
             stage('Checkout GIT'){
                 steps{
-                    checkout([$class: 'GitSCM', branches: [[name: '*/dhia']], extensions: [], userRemoteConfigs: [[credentialsId: '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', url: 'https://github.com/Patsooo/ProjetDevops.git']]])
+                    checkout([$class: 'GitSCM', branches: [[name: '*/dhia']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/Patsooo/ProjetDevops.git']]])
                              }
 	    }
 		     stage('MVN CLEAN')
