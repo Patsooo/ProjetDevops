@@ -1,0 +1,14 @@
+pipeline {
+    agent any
+    stages {
+        stage('Cloning Project from Git') {
+            steps {
+                cleanWs()
+                git branch : 'main',
+                url : 'https://github.com/Patsooo/ProjetDevops.git',
+                credentialsId: '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';
+            }
+        }
+       
+    }
+}
