@@ -44,7 +44,15 @@ pipeline {
                            
 
 
-
+		stage('Docker Build and Push') {
+       					steps {
+         withDockerRegistry([credentialsId: "docker", url: ""]) {
+           sh 'printenv'
+           sh 'sudo docker build -t dhiaaa/ci:latest .'
+           sh 'docker push dhiaaa/ci:latest '
+         }
+       }
+     }
 
 
 
