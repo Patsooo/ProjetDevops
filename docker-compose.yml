@@ -13,7 +13,7 @@ services:
     volumes:
       - achatdb:/var/lib/mysql
 
-  Operateur_app:
+  operateur_app:
     build: ./
     restart: on-failure
     environment:
