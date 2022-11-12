@@ -48,7 +48,8 @@ pipeline {
        					steps {
          withDockerRegistry([credentialsId: "docker", url: ""]) {
            sh 'printenv'
-           sh 'sudo docker build -t dhiaaa/ci:latest .'
+           sh 'sudo docker build -t devops .'
+	   sh 'sudo docker tag devops dhiaaa/ci:latest'
            sh 'docker push dhiaaa/ci:latest '
          }
        }
