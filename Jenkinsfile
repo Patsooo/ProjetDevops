@@ -7,7 +7,7 @@ pipeline {
         dockerImage = ''
     	}
     stages{
-        stage("git pull"){
+        stage("Git pull stage"){
             steps{
               
                 git branch: 'Operateurs',  
@@ -16,7 +16,7 @@ pipeline {
                 }
                 
             }
-            stage('MVN CLEAN') {
+            stage('Mvn clean stage') {
                 steps {
                 sh 'mvn clean'
                     
@@ -24,21 +24,21 @@ pipeline {
                 
             }
             
-        stage('MVN COMPILE') {
+        stage('Mvn compile stage') {
                 steps {
                 sh 'mvn compile'
                     
                 }
                 
             }
-        stage('MVN PACKAGE'){
+        stage('Mvn package stage'){
                 steps{
                 sh 'mvn package'
                     
                 }
                 
             }  
-        stage('MVN TEST') {
+        stage('Mvn test stage') {
                 steps {
                 sh 'mvn test'
                     
