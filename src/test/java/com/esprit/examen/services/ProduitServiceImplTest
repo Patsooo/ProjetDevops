@@ -6,6 +6,7 @@ package com.esprit.examen.services;
         import java.util.ArrayList;
         import java.util.List;
 
+        import org.junit.jupiter.api.Assertions;
         import org.junit.jupiter.api.Test;
 
         import org.mockito.InjectMocks;
@@ -30,14 +31,14 @@ package com.esprit.examen.services;
 @ExtendWith(MockitoExtension.class)
 @MockitoSettings(strictness = Strictness.LENIENT)
 
-class ProduitServiceImplTest {
+public class ProduitServiceImplTest {
     @Mock
     ProduitRepository produitRepository;
 
     @InjectMocks
     ProduitServiceImpl produitServiceService;
 
-    Produit produit = new Produit(14L , 1998L );
+    Produit p = new Produit(14L , 1998L );
 
     List<Produit> list = new ArrayList<Produit>() {
 
@@ -49,7 +50,7 @@ class ProduitServiceImplTest {
     };
 
     @Test
-     void getAllProduitTest()
+     public void getAllProduitTest()
     {
         List<Produit> Produitlist = new ArrayList<Produit>() {
 
@@ -68,7 +69,7 @@ class ProduitServiceImplTest {
 
 
     @Test
-    void test_addProduit() {
+    public void test_addProduit() {
         Produit p= new Produit();
         p.setIdProduit(1L);
 
@@ -77,12 +78,20 @@ class ProduitServiceImplTest {
 
         assertEquals(1L, p.getIdProduit());
     }
+    @Test
     public void delete() {
 
-        Produit p = produitRepository.findById(1L).get();
-        produitRepository.delete(p);
-        produitServiceService.deleteProduit(null);
+        Produit p = new Produit();
+        p.setIdProduit(Long.valueOf(100));
+        produitServiceService.addProduit(p);
+        produitServiceService.deleteProduit(p.getIdProduit());
 
+    }
+    @Test
+    public void updateProduit(){
+        Mockito.when(produitRepository.save(p)).thenReturn(p);
+        Produit p1=produitServiceService.updateProduit(p);
+        Assertions.assertEquals(p,p1);
     }
 
 
