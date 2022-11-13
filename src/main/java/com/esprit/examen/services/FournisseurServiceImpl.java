@@ -3,7 +3,7 @@ package com.esprit.examen.services;
 import java.util.Date;
 import java.util.List;
 
-import javax.transaction.Transactional;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,6 +15,8 @@ import com.esprit.examen.repositories.FournisseurRepository;
 import com.esprit.examen.repositories.ProduitRepository;
 import com.esprit.examen.repositories.SecteurActiviteRepository;
 import lombok.extern.slf4j.Slf4j;
+
+import static org.mockito.ArgumentMatchers.notNull;
 
 @Service
 @Slf4j
@@ -39,10 +41,10 @@ public class FournisseurServiceImpl implements IFournisseurService {
 	}
 
 
-	public Fournisseur addFournisseur(Fournisseur f /*Master*/) {
-		DetailFournisseur df= new DetailFournisseur();//Slave
-		df.setDateDebutCollaboration(new Date()); //util
-		//On affecte le "Slave" au "Master"
+	public Fournisseur addFournisseur(Fournisseur f ) {
+		DetailFournisseur df= new DetailFournisseur();
+		df.setDateDebutCollaboration(new Date()); 
+		
 		f.setDetailFournisseur(df);	
 		fournisseurRepository.save(f);
 		return f;
@@ -69,19 +71,23 @@ public class FournisseurServiceImpl implements IFournisseurService {
 
 	@Override
 	public Fournisseur retrieveFournisseur(Long fournisseurId) {
-
-		Fournisseur fournisseur = fournisseurRepository.findById(fournisseurId).orElse(null);
+        Fournisseur fournisseur=null;
+		if (fournisseurId==notNull()) {
+			fournisseur = fournisseurRepository.findById(fournisseurId).orElse(null);
+		}
 		return fournisseur;
 	}
 
 	@Override
 	public void assignSecteurActiviteToFournisseur(Long idSecteurActivite, Long idFournisseur) {
-		Fournisseur fournisseur = fournisseurRepository.findById(idFournisseur).orElse(null);
-		SecteurActivite secteurActivite = secteurActiviteRepository.findById(idSecteurActivite).orElse(null);
-        fournisseur.getSecteurActivites().add(secteurActivite);
-        fournisseurRepository.save(fournisseur);
-		
-		
+		Fournisseur fournisseur =null;
+		if (idFournisseur == notNull()) {
+			 fournisseur = fournisseurRepository.findById(idFournisseur).orElseThrow(NullPointerException::new);
+			SecteurActivite secteurActivite = secteurActiviteRepository.findById(idSecteurActivite).orElseThrow(NullPointerException::new);
+			fournisseur.getSecteurActivites().add(secteurActivite);
+			fournisseurRepository.save(fournisseur);
+
+		}
 	}
 
 	
