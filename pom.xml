@@ -161,7 +161,8 @@
 							<version>${version}</version>
 							<packaging>${packaging}</packaging>
 							<generatePom>true</generatePom>
-
+							<repositoryId>nexus-releases</repositoryId>
+							<url>http://192.168.1.5:8081/repository/maven-releases</url>
 
 						</configuration>
 					</execution>
@@ -169,7 +170,9 @@
 			</plugin>
 
 		</plugins>
+
 		<finalName>waael-spring-boot</finalName>
+
 	</build>
 	<distributionManagement>
 		<repository>
@@ -181,5 +184,8 @@
 			<id>nexus-snapshots</id>
 			<url>http://192.168.1.5:8081/repository/maven-snapshots</url>
 		</snapshotRepository>
+
 	</distributionManagement>
+
+
 </project>
