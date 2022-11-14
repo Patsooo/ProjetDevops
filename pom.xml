@@ -101,7 +101,8 @@
 	<distributionManagement>
 		<repository>
 			<id>deploymentRepo</id>
-			<url>http://172.10.0.140:8081/repository/maven-releases/</url>
+			<name>maven-snapshots</name>
+			<url>http://172.10.0.140:8081/repository/maven-snapshots/</url>
 		</repository>
 	</distributionManagement>
 
