@@ -45,16 +45,15 @@ stage('MVN CLEAN')
                                             }
           
         
-        stage('Docker Build and Push') {
-       					steps {
-         withDockerRegistry([credentialsId: "docker", url: ""]) {
-           sh 'printenv'
-           sh 'sudo docker build -t devops .'
-	   sh 'sudo docker tag devops youssefmansour12/tpachat:latest'
-           sh 'docker push youssefmansour12/tpachat:latest '
-         }
-       }
-     }
+       
+
+                                              stage('Docker login') {
+
+                                                                                      steps {
+                                                                                       sh 'echo "login Docker ...."'
+                                                                	sh 'docker login -u youssefmansour12 -p 203jmt0938'
+                                                                            }  }
+                
 
 
 
