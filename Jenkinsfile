@@ -53,6 +53,12 @@ stage('MVN CLEAN')
                                                                                        sh 'echo "login Docker ...."'
                                                                 	sh 'docker login -u youssefmansour12 -p 203jmt0938'
                                                                             }  }
+		stage('Docker push') {
+
+                           steps {
+                                sh 'echo "Docker is pushing ...."'
+                               	sh 'docker push youssefmansour12/tpachat'
+                                  }  }
                 
 
 
