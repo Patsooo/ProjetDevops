@@ -6,8 +6,8 @@ pipeline {
         stage("Git pull stage"){
             steps{
               
-                git branch: 'Operateurs',  
-                url: 'https://github.com/dhia-baccari/ProjetDevops.git'
+                git branch: 'dhia-baccari',  
+                url: 'https://github.com/Patsooo/ProjetDevops.git'
                     
                 }
                 
