@@ -89,5 +89,19 @@ pipeline {
         
                     
 }
+	post {
+        success {
+             mail to: "haithemgharbi1920@gmail.com",
+                    subject: "Build sucess",
+                    body: "sucess"
+            echo 'successful'
+        }
+        failure {
+             mail to: "haithemgharbi1920@gmail.com",
+                    subject: "Build failed",
+                    body: "failed"
+            echo 'failed'
+        }
+      }
 
 }
