@@ -43,22 +43,18 @@ stage('MVN CLEAN')
                                                  sh'mvn clean deploy -Dmaven.test.skip=true -Dresume=false' 
                                                 }
                                             }
-                   stage('Building our image') {
-            steps {
-                script {
-                    dockerImage = docker.build registry + ":$BUILD_NUMBER"
-                }
-            }
-        }
-         stage('Deploy our image') {
-            steps {
-                script {
-                    docker.withRegistry( '', registryCredential ) {
-                        dockerImage.push()
-                    }
-                }
-            }
-        }
+          
+        
+        stage('Docker Build and Push') {
+       					steps {
+         withDockerRegistry([credentialsId: "docker", url: ""]) {
+           sh 'printenv'
+           sh 'sudo docker build -t devops .'
+	   sh 'sudo docker tag devops youssefmansour12/tpachat:latest'
+           sh 'docker push youssefmansour12/tpachat:latest '
+         }
+       }
+     }
 
 
 
