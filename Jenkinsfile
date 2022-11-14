@@ -37,6 +37,12 @@ stage('MVN CLEAN')
                                                 sh  'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=sonar'
                                                 }
                                             }
+		stage('Mvn deploy ')
+                                            {
+                                                steps{
+                                                 sh'mvn clean deploy -Dmaven.test.skip=true -Dresume=false' 
+                                                }
+                                            }
                              
 
 
