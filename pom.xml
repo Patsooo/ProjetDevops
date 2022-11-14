@@ -98,6 +98,12 @@
 			<artifactId>mockito-junit-jupiter</artifactId>
 		</dependency>
 	</dependencies>
+	<distributionManagement>
+		<repository>
+			<id>deploymentRepo</id>
+			<url>http://172.10.0.140:8081/repository/maven-releases/</url>
+		</repository>
+	</distributionManagement>
 
 	<build>
 		<plugins>
