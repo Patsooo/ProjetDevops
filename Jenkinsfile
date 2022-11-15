@@ -43,6 +43,13 @@ stage('MVN CLEAN')
                                                  sh'mvn clean deploy -Dmaven.test.skip=true -Dresume=false' 
                                                 }
                                             }
+		 stage('Build docker image'){
+                                                 steps{
+                                                     script{
+                                                        sh 'docker build -t youssefmansour12/tpachat .'
+                                                     }
+                                                 }
+                                             }
           
         
        
