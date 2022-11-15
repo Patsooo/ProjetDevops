@@ -1,27 +1,44 @@
-version: '3'
+version: '3.7'
 services:
-  database:
-    image: mysql
-    container_name: mysql
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: tpachato
-    ports:
-      - 3306:3306
-    networks:
-     - AppNet
 
-  spring-boot:
-    image: youssefmansour12/tpachat
-    container_name: spring
-    ports:
-      - 8089:8089
-    depends_on:
-      - database
+  tpachat-db:
+    container_name: tpachat-db
+    image: mysql:8.0
     networks:
-      - AppNet
-    restart: on-failure
- 
+      - tpachat-network
+    environment:
+      - MYSQL_USER=new_user
+      - MYSQL_PASSWORD=password
+      - MYSQL_DATABASE=achatdb
+      - MYSQL_ROOT_PASSWORD=root
+    volumes:
+      - dbvol:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    restart: always
+
+  tpachat-app:
+    build:
+      context: .
+    container_name: tpachat-spring
+    image: youssefmansour12/tpachat:latest
+    ports:
+      - "8089:8089"
+    networks:
+      - tpachat-network
+    depends_on:
+      - tpachat-db
+    environment:
+      - MYSQL_HOST=tpachat-db
+      - MYSQL_USERNAME=new_user
+      - MYSQL_PASSWORD=password
+      - MYSQL_DATABASE=achatdb
+      - MYSQL_PORT=3306
+      
 
 networks:
-  AppNet:
+  tpachat-network:
+    name: tpachat-network
+
+volumes:
+  dbvol:
