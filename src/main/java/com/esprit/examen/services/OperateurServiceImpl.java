@@ -31,7 +31,7 @@ public class OperateurServiceImpl implements IOperateurService {
 
 	@Override
 	public Operateur updateOperateur(Operateur o) {
-		operateurRepository.save(o);
+		addOperateur(o);
 		return o;
 	}
 
