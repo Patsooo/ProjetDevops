@@ -35,7 +35,7 @@ pipeline {
         stage('docker push') {
                 steps {
                     script{
-                        sh 'docker tag molkamrad/dockerr'
+                        sh 'docker tag dockerr molkamrad/dockerr'
                         sh 'docker push molkamrad/dockerr'
                     }
                 }
