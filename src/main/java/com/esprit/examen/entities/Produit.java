@@ -49,8 +49,8 @@ public class Produit implements Serializable {
 	private CategorieProduit categorieProduit;
 
 
-	public Produit(long idProduit, String codeProduit, int i, Object o, Object dateCreation, Object dateDerniereModification, Object stock, Object detailFacture, Object categorieProduit) {
-	}
+	  public Produit(long idProduit, Object codeProduit, int i, Object o1, Object o2, Object o3) {
+    }
 
 	public Produit(long l, long l1) {
 	}
