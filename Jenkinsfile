@@ -18,11 +18,16 @@ pipeline {
                 sh 'mvn compile'  
                 }
             }
-        stage('docker build') {
+        stage('docker build and push') {
                 steps {
-                withDockerRegistry([credentialsId: "dockerid"]) {
-                    sh 'sudo docker build -t molkamrad/dockerr .'
-                }
+                    script{
+                        withCredentials([string(credentialsId: "dockerid", variable : "dockerid")]) {
+                            sh 'docker login -u molkamrad -p ${dockerid}'
+                            sh 'docker build -t molkamrad/dockerr .'
+                            sh 'docker push molkamrad/dockerr'
+                        }
+                    }
+                
                 }
             }
     }
