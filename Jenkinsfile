@@ -16,7 +16,7 @@ pipeline {
         stage('mvn compile') {
                 steps {
                 sh 'mvn compile'  
-                sh 'ls /target'
+                sh 'ls target/'
                 }
             }
         stage('mvn package'){
