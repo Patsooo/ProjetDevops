@@ -28,7 +28,7 @@ pipeline {
         stage('docker build') {
                 steps {
                     script{
-                        sh 'docker build -t spring .'
+                        sh 'sudo docker build -t spring .'
                     }
                 }
             }
