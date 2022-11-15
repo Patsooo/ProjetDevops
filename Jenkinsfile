@@ -25,10 +25,17 @@ pipeline {
                     
                 }
             } 
-        stage('docker build and push') {
+        stage('docker build') {
                 steps {
                     script{
                         sh 'docker build -t molkamrad/dockerr .'
+                    }
+                }
+            }
+        stage('docker push') {
+                steps {
+                    script{
+                        sh 'docker push molkamrad/dockerr'
                     }
                 }
             }
