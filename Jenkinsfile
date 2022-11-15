@@ -32,6 +32,18 @@ pipeline {
                     }
                 }
             }
+        stage('Push container') {
+                steps {
+                    script {
+                        docker.withRegistry('', 'dockerid') {
+                            def image = docker.build("molkamrad/spring:${env.BUILD_ID}")
+                            image.push()
+                        }
+                    }
+                }
+            }
+            
+        
         stage('docker push') {
                 steps {
                     withDockerRegistry([ credentialsId: "dockerid", url: "https://index.docker.io/v1/" ]){            
