@@ -55,9 +55,9 @@ public class ProduitServiceImplTest {
         List<Produit> Produitlist = new ArrayList<Produit>() {
 
             {
-                add(new Produit(3L, null, 1998, null, null, null, null, null, null));
-                add(new Produit(5L, null, 16, null, null, null, null, null, null));
-                add(new Produit(8L, null, 112, null, null, null, null, null, null));
+                add(new Produit(3L, null, 1998, null, null, null));
+                add(new Produit(5L, null, 16, null, null, null));
+                add(new Produit(8L, null, 112, null, null, null));
             }};
 
 
