@@ -10,6 +10,7 @@ pipeline {
         stage('mvn clean') {
                 steps {
                 sh 'mvn clean'
+                sh 'mvn dependency:purge-local-repository clean install -U'
                 }
                 
             }
