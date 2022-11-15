@@ -22,9 +22,9 @@ pipeline {
                 steps {
                     script{
                         withCredentials([string(credentialsId: "dockerid", variable : "dockerid")]) {
-                            sh 'su docker login -u molkamrad -p ${dockerid}'
-                            sh 'su docker build -t molkamrad/dockerr .'
-                            sh 'su docker push molkamrad/dockerr'
+                            sh 'sudo docker login -u molkamrad -p ${dockerid}'
+                            sh 'sudo docker build -t molkamrad/dockerr .'
+                            sh 'sudo docker push molkamrad/dockerr'
                         }
                     }
                 
