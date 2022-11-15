@@ -35,12 +35,13 @@ public class ProduitRestController {
 	}
 
 
+    @PostMapping("/add-produit")
+    @ResponseBody
+    public Produit addProduit(@RequestBody ProduitDTO p) {
+        Produit persistentProduit = modelMapper.map(p,Produit.class);
+        return produitService.addProduit( persistentProduit);
 
-	@PostMapping("/add-produit")
-	@ResponseBody
-	public Produit addProduit(@RequestBody Produit p) {
-		return produitService.addProduit(p);
-	}
+    }
 
 
 	@DeleteMapping("/remove-produit/{produit-id}")
@@ -51,10 +52,11 @@ public class ProduitRestController {
 
 
 	@PutMapping("/modify-produit")
-	@ResponseBody
-	public Produit modifyProduit(@RequestBody Produit p) {
-		return produitService.updateProduit(p);
-	}
+    @ResponseBody
+    public Produit modifyProduit(@RequestBody ProduitDTO produit) {
+        Produit persistentProduit = modelMapper.map(produit,  Produit.class);
+        return produitService.updateProduit(persistentProduit);
+    }
 
 
 	
