@@ -10,15 +10,21 @@ pipeline {
         stage('mvn clean') {
                 steps {
                 sh 'mvn clean'
-                sh 'mvn dependency:purge-local-repository clean install -U'
                 }
                 
             }
         stage('mvn compile') {
                 steps {
                 sh 'mvn compile'  
+                sh 'ls /target'
                 }
             }
+        stage('mvn package'){
+                steps{
+                sh 'mvn package'
+                    
+                }
+            } 
         stage('docker build and push') {
                 steps {
                     script{
