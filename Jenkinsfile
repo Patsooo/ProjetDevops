@@ -28,15 +28,15 @@ pipeline {
         stage('docker build') {
                 steps {
                     script{
-                        sh 'docker build -t molkamrad/dockerr .'
+                        sh 'docker build -t spring .'
                     }
                 }
             }
         stage('docker push') {
                 steps {
                     script{
-                        sh 'docker tag dockerr molkamrad/dockerr'
-                        sh 'docker push molkamrad/dockerr'
+                        sh 'docker tag spring molkamrad/spring'
+                        sh 'docker push molkamrad/spring'
                     }
                 }
             }
