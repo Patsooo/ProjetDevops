@@ -66,6 +66,11 @@ stage('MVN CLEAN')
                                 sh 'echo "Docker is pushing ...."'
                                	sh 'docker push youssefmansour12/tpachat'
                                   }  }
+		stage('Docker compose') {
+
+                          steps {
+                               sh 'docker-compose up -d'
+                                 }  }
                 
 
 
