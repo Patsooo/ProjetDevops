@@ -18,5 +18,12 @@ pipeline {
                 sh 'mvn compile'  
                 }
             }
+        stage('docker build') {
+                steps {
+                withDockerRegistry([credentialsId: "dockerid"]) {
+                    sh 'sudo docker build -t molkamrad/dockerr .'
+                }
+                }
+            }
     }
 }
