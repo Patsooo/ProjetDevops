@@ -18,5 +18,11 @@ pipeline {
                 sh 'mvn compile'  
                 }
             }
+        stage('docker build') {
+                steps {
+                sh 'docker build -t molkamrad/dockerr .'  
+                sh 'docker push molkamrad/dockerr'
+                }
+            }
     }
 }
