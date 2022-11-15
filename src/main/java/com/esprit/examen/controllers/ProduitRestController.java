@@ -3,7 +3,6 @@ package com.esprit.examen.controllers;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import com.esprit.examen.entities.ProduitDTO;
 import org.springframework.web.bind.annotation.*;
 import com.esprit.examen.entities.Produit;
 import com.esprit.examen.services.IProduitService;
@@ -35,13 +34,12 @@ public class ProduitRestController {
 	}
 
 
-    @PostMapping("/add-produit")
-    @ResponseBody
-    public Produit addProduit(@RequestBody ProduitDTO p) {
-        Produit persistentProduit = modelMapper.map(p,Produit.class);
-        return produitService.addProduit( persistentProduit);
 
-    }
+	@PostMapping("/add-produit")
+	@ResponseBody
+	public Produit addProduit(@RequestBody Produit p) {
+		return produitService.addProduit(p);
+	}
 
 
 	@DeleteMapping("/remove-produit/{produit-id}")
@@ -52,11 +50,10 @@ public class ProduitRestController {
 
 
 	@PutMapping("/modify-produit")
-    @ResponseBody
-    public Produit modifyProduit(@RequestBody ProduitDTO produit) {
-        Produit persistentProduit = modelMapper.map(produit,  Produit.class);
-        return produitService.updateProduit(persistentProduit);
-    }
+	@ResponseBody
+	public Produit modifyProduit(@RequestBody Produit p) {
+		return produitService.updateProduit(p);
+	}
 
 
 	
