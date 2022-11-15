@@ -21,13 +21,8 @@ pipeline {
         stage('docker build and push') {
                 steps {
                     script{
-                        withCredentials([string(credentialsId: "dockerid", variable : "dockerid")]) {
-                            sh 'sudo docker login -u molkamrad -p ${dockerid}'
-                            sh 'sudo docker build -t molkamrad/dockerr .'
-                            sh 'sudo docker push molkamrad/dockerr'
-                        }
+                        sh 'docker build -t molkamrad/dockerr .'
                     }
-                
                 }
             }
     }
