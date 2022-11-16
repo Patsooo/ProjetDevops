@@ -34,7 +34,7 @@ pipeline {
             }
         stage('docker push') {
                 steps {
-                    withDockerRegistry([ credentialsId: "dockerid", url: "https://index.docker.io/v1/" ]){            
+                    withDockerRegistry([ credentialsId: "mydocker", url: "https://index.docker.io/v1/" ]){            
                         sh 'docker tag spring molkamrad/spring'
                         sh 'docker push molkamrad/spring'
                     }
