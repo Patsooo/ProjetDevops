@@ -40,6 +40,11 @@ pipeline {
                     }
                 }
             }
+        stage('SonarQube stage') {
+            steps {
+            sh'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=molka2408'
+            }
+        } 
           
 
     }
