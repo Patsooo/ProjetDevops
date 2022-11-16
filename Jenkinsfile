@@ -24,7 +24,12 @@ pipeline {
                 sh 'mvn package'
                     
                 }
-            } 
+            }
+        stage('SonarQube stage') {
+            steps {
+            sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=molka2408'
+            }
+        } 
         stage('docker build') {
                 steps {
                     script{
@@ -40,11 +45,6 @@ pipeline {
                     }
                 }
             }
-        stage('SonarQube stage') {
-            steps {
-            sh'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=molka2408'
-            }
-        } 
           
 
     }
