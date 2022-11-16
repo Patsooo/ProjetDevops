@@ -9,20 +9,25 @@ pipeline {
         }
         stage('mvn clean') {
                 steps {
+                echo 'cleaning the project'
                 sh 'mvn clean'
                 }
                 
             }
         stage('mvn compile') {
                 steps {
-                sh 'mvn compile'  
-                sh 'ls target/'
+                sh 'mvn compile'
                 }
             }
         stage('mvn package'){
                 steps{
-                sh 'mvn package'
-                    
+                sh 'mvn package -Dmaven.test.skip=true'
+                }
+            }
+        stage('mvn test'){
+                steps{
+                echo 'launching unit tests'
+                sh 'mvn test'
                 }
             }
         stage('SonarQube stage') {
