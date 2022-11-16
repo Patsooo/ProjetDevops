@@ -1,6 +1,8 @@
 package com.esprit.examen.services;
 
 import java.util.List;
+
+import com.esprit.examen.entities.DetailFournisseur;
 import com.esprit.examen.entities.Fournisseur;
 
 public interface IFournisseurService {
@@ -10,6 +12,7 @@ public interface IFournisseurService {
 	Fournisseur addFournisseur(Fournisseur f);
 
 	void deleteFournisseur(Long id);
+	DetailFournisseur saveDetailFournisseur(Fournisseur f);
 
 	Fournisseur updateFournisseur(Fournisseur f);
 
