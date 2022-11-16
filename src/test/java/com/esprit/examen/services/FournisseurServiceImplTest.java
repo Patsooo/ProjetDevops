@@ -8,10 +8,10 @@ import java.util.Date;
 
 import com.esprit.examen.repositories.DetailFournisseurRepository;
 import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import com.esprit.examen.entities.CategorieFournisseur;
 import com.esprit.examen.entities.DetailFournisseur;
@@ -21,7 +21,7 @@ import com.esprit.examen.entities.SecteurActivite;
 import lombok.extern.slf4j.Slf4j;
 
 
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest
 @Slf4j
 public class FournisseurServiceImplTest {
