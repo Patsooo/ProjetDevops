@@ -48,7 +48,7 @@ pipeline {
                     }
                 }
             }
-        stage('docker push') {
+        stage('Deploy image') {
                 steps {
                     withDockerRegistry([ credentialsId: "mydocker", url: "https://index.docker.io/v1/" ]){            
                         sh 'docker tag spring molkamrad/spring'
@@ -56,6 +56,13 @@ pipeline {
                     }
                 }
             }
+         stage('Docker compose') {
+          
+            steps {
+            sh 'docker-compose up -d'
+               
+            }
+        }
           
 
     }
