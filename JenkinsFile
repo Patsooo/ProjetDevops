@@ -62,13 +62,14 @@ pipeline {
      }
 
 
-
-	}
-	
 	stage('Sending Mail'){
             steps{
                 mail ( body: 'Congratulations! your DevOps project pipeline was completed succesfully!', subject: 'Pipeline', to: 'b.amor.dhia@gmail.com')
             }
         }
+
+	}
+	
+
 
 }
