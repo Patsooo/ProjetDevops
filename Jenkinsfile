@@ -1,6 +1,11 @@
 pipeline {
     agent any
-
+	
+environment {
+        registry = "dhiya2022/ci"
+        registryCredential = 'docker'
+        dockerImage = ''
+    	}
 	
     stages{
         stage("Git pull stage"){
@@ -58,22 +63,24 @@ pipeline {
         }
         
         
-        stage('Docker Build and Push') {
-       					steps {
-         withDockerRegistry([credentialsId: "docker", url: ""]) {
-           sh 'printenv'
-           sh 'sudo docker build -t devops .'
-	   sh 'sudo docker tag devops dhiya2022/ci:latest'
-           sh 'docker push dhiacs1.6/ci:latest '
-         }
-       }
-     }
+       stage('Building our image') {
+            steps {
+                script {
+                    dockerImage = docker.build registry + ":$BUILD_NUMBER"
+                }
+            }
+        }
+         stage('Deploy our image') {
+            steps {
+                script {
+                    docker.withRegistry( '', registryCredential ) {
+                        dockerImage.push()
+                    }
+                }
+            }
+        }
         
-        stage('Docker Compose') {
-       steps {
-               sh 'docker-compose up --d --force-recreate '
-       }
-     }
+       
             
 }
 
