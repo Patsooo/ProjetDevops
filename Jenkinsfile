@@ -7,27 +7,33 @@ pipeline {
                 url : 'https://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@github.com/Patsooo/ProjetDevops.git'
             }
         }
-        stage('mvn clean') {
+        stage('Cleaning') {
                 steps {
                 echo 'cleaning the project'
                 sh 'mvn clean'
                 }
                 
             }
-        stage('mvn compile') {
+        stage('Compiling') {
                 steps {
                 sh 'mvn compile'
                 }
             }
-        stage('mvn package'){
+        stage('Artefact Construction'){
                 steps{
                 sh 'mvn package'
                 }
             }
-        stage('mvn test'){
+        stage('Unit tests'){
                 steps{
                 echo 'launching unit tests'
-                sh 'mvn test'
+                
+                }
+            }
+        stage('Publish to Nexus'){
+                steps{
+                echo 'launching unit tests'
+                sh 'mvn deploy:deploy-file -DgroupId=com.esprit.examen -DartefactId=tpAchatProject -Dversion=1.0 -DgeneratePom=true -Dpackaging=jar -DrepositoryId=deploymentRepo -Durl=http://192.168.56.5:8081/repository/maven-releases/ -Dfile=target/tpAchatProject-1.00.jar'
                 }
             }
         stage('SonarQube stage') {
@@ -35,7 +41,7 @@ pipeline {
             sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=molka2408'
             }
         } 
-        stage('docker build') {
+        stage('Building image') {
                 steps {
                     script{
                         sh 'docker build -t spring .'
