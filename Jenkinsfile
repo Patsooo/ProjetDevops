@@ -10,7 +10,7 @@ pipeline {
         stage('Cleaning') {
                 steps {
                 echo 'cleaning the project'
-                sh 'mvn clean'
+                sh 'mvn clean install -U'
                 }
                 
             }
@@ -33,7 +33,7 @@ pipeline {
         stage('Publish to Nexus'){
                 steps{
                 echo 'launching unit tests'
-                sh 'mvn deploy:deploy-file -DgroupId=com.esprit.examen -DartefactId=tpAchatProject -Dversion=1.0 -DgeneratePom=true -Dpackaging=jar -DrepositoryId=deploymentRepo -Durl=http://192.168.56.5:8081/repository/maven-releases/ -Dfile=target/tpAchatProject-1.00.jar'
+                sh 'mvn deploy:deploy-file -DgroupId=com.esprit.examen -DartefactId=tpAchatProject -Dversion=1.0 -DgeneratePom=true -Dpackaging=jar -DrepositoryId=deploymentRepo -Durl=http://192.168.56.5:8081/repository/maven-releases/ -Dfile=target/tpAchatProject-1.0.jar'
                 }
             }
         stage('SonarQube stage') {
