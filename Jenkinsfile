@@ -71,7 +71,11 @@ stage('MVN CLEAN')
                           steps {
                                sh 'docker-compose up -d'
                                  }  }
-                
+                stage('Sending Mail'){
+            steps{
+                mail ( body: 'Congratulations! your DevOps project pipeline was completed succesfully!', subject: 'Pipeline', to: 'ym2849817@gmail.com')
+            }
+        }
 
 
 
