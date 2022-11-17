@@ -33,7 +33,7 @@ pipeline {
         stage('Publish to Nexus'){
                 steps{
                 echo 'deploying ...'
-                sh 'mvn deploy'
+                sh 'mvn deploy:deploy-file -Durl=http://192.168.56.5:8081/repository/maven-releases/'
                 }
             }
         stage('SonarQube stage') {
