@@ -112,7 +112,7 @@
 			</plugin>
 		</plugins>
 		
-		<finalName>haythem-spring-boot</finalName>
+		
 	</build>
 
 </project>
