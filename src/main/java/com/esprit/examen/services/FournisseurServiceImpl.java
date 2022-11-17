@@ -75,7 +75,7 @@ public class FournisseurServiceImpl implements IFournisseurService {
 	@Override
 	public void assignSecteurActiviteToFournisseur(Long idSecteurActivite, Long idFournisseur) {
 		Fournisseur fournisseur = fournisseurRepository.findById(idFournisseur).orElse(null);
-		SecteurActivite secteurActivite = secteurActiviteRepository.findById(idSecteurActivite).orElse(null);
+		SecteurActivite secteurActivite = secteurActiviteRepository.findById(idSecteurActivite).orElseThrow(NullPointerException::new);
         fournisseur.getSecteurActivites().add(secteurActivite);
         fournisseurRepository.save(fournisseur);
 		
