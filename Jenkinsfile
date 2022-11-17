@@ -21,13 +21,13 @@ pipeline {
             }
         stage('Artefact Construction'){
                 steps{
-                sh 'mvn package'
+                sh 'mvn package -Dmaven.test.skip=true'
                 }
             }
         stage('Unit tests'){
                 steps{
                 echo 'launching unit tests'
-                
+                sh 'mvn test'
                 }
             }
         stage('Publish to Nexus'){
