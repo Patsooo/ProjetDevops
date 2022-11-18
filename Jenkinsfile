@@ -18,7 +18,7 @@ pipeline {
             }
             stage('Mvn clean stage') {
                 steps {
-                sh 'mvn clean'
+                sh 'mvn clean install'
                     
                 }
                 
@@ -93,13 +93,13 @@ pipeline {
         success {
              mail to: "haithemgharbi1920@gmail.com",
                     subject: "Build sucess",
-                    body: "sucess"
+                    body: "Your pipeline was sucessfully built"
             echo 'successful'
         }
         failure {
              mail to: "haithemgharbi1920@gmail.com",
                     subject: "Build failed",
-                    body: "failed"
+                    body: "Your pipeline was failed you need to correct it"
             echo 'failed'
         }
       }
