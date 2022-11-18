@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@SpringBootTest
+@SpringBootTest(classes =FournisseurServiceImplTestMock.class)
 @ExtendWith(MockitoExtension.class)
 class FournisseurServiceImplTestMock {
     @Mock
