@@ -25,28 +25,28 @@ environment {
                 
             }
             
-        stage('Mvn compile stage') {
+        stage('Mvn compile ') {
                 steps {
                 sh 'mvn compile'
                     
                 }
                 
             }
-        stage('Mvn package stage'){
+        stage('Mvn package '){
                 steps{
                 sh 'mvn package'
                     
                 }
                 
             }  
-        stage('Mvn test stage') {
+        stage('Mvn test ') {
                 steps {
                 sh 'mvn test'
                     
                 }
                 
             }  
-            stage('SonarQube stage') {
+            stage('SonarQube ') {
           
             steps {
             sh'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=sonar'
@@ -54,7 +54,7 @@ environment {
             }
         } 
         
-        stage('Nexus stage') {
+        stage('Nexus ') {
           
             steps {
            sh 'mvn deploy -e'
@@ -63,14 +63,14 @@ environment {
         }
         
         
-       stage('Building our image') {
+       stage('Building  image') {
             steps {
                 script {
                     dockerImage = docker.build registry + ":$BUILD_NUMBER"
                 }
             }
         }
-         stage('Deploy our image') {
+         stage('Deploy  image') {
             steps {
                 script {
                     docker.withRegistry( '', registryCredential ) {
@@ -79,7 +79,7 @@ environment {
                 }
             }
         }
-         stage('Docker compose stage') {
+         stage('Docker compose ') {
           
             steps {
             sh 'docker-compose up -d'
@@ -89,5 +89,19 @@ environment {
        
             
 }
+	post {
+        success {
+             mail to: "hammabaccari44@gmail.com",
+                    subject: "Build sucess",
+                    body: "sucess"
+            echo 'successful'
+        }
+        failure {
+             mail to: "hammabaccari44@gmail.com",
+                    subject: "Build failed",
+                    body: "failed"
+            echo 'failed'
+        }
+      }
 
 }
