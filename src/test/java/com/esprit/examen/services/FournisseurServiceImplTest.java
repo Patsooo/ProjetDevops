@@ -1,4 +1,4 @@
-/*package com.esprit.examen.services;
+package com.esprit.examen.services;
 
 import static org.junit.Assert.*;
 
@@ -9,6 +9,11 @@ import java.util.Date;
 import com.esprit.examen.repositories.DetailFournisseurRepository;
 import org.junit.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
+import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
+import static org.junit.jupiter.api.Assertions.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
@@ -18,12 +23,12 @@ import com.esprit.examen.entities.DetailFournisseur;
 import com.esprit.examen.entities.Fournisseur;
 import com.esprit.examen.entities.SecteurActivite;
 
-import lombok.extern.slf4j.Slf4j;
 
+import java.util.List;
 
-@ExtendWith(SpringExtension.class)
 @SpringBootTest
-@Slf4j
+@TestMethodOrder(OrderAnnotation.class)
+
 public class FournisseurServiceImplTest {
 	@Autowired
 	IFournisseurService fournisseurService;
@@ -115,4 +120,4 @@ public class FournisseurServiceImplTest {
 		secteurActiviteService.deleteSecteurActivite(savedSec.getIdSecteurActivite());
 	}
 }
-*/
+
