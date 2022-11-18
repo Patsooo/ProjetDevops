@@ -26,13 +26,17 @@ pipeline {
                 sh 'mvn package -Dmaven.test.skip=true'
                 }
             }
+        stage('SonarQube stage') {
+                steps {
+                sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=molka2408'
+                }
+            } 
         stage('Publish to Nexus'){
                 steps{
                 echo 'deploying ...'
                 sh 'mvn deploy:deploy-file -DgroupId=com.esprit.examen -DartifactId=tpAchatProject -Dversion=1.0 -Dpackaging=jar -Dfile=target/tpAchatProject-1.0.jar -DrepositoryId=deploymentRepo -Durl=http://192.168.56.5:8081/repository/maven-releases/'
                 }
             }
-        
         stage('Building image') {
                 steps {
                     script{
