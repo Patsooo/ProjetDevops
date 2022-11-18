@@ -62,4 +62,12 @@ pipeline {
           
 
     }
+    post {
+        success{
+            mail ( body: 'The Spring project pipeline was completed succesfully.', subject: 'Finished Pipeline : Success', to: 'mokamoka678@gmail.com')
+        }
+        failure{
+            mail ( body: 'The Spring project pipeline has failed', subject: 'Finished Pipeline : Failure', to: 'mokamoka678@gmail.com')
+        }
+    }
 }
