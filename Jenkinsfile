@@ -21,7 +21,7 @@ pipeline {
             }
         stage('Artefact Construction'){
                 steps{
-                sh 'mvn package -Dmaven.test.skip=true'
+                sh 'mvn package'
                 }
             }
         stage('Unit tests'){
