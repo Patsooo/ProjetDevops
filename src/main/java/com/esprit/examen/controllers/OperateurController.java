@@ -22,8 +22,8 @@ public class OperateurController {
 	@GetMapping("/retrieve-all-operateurs")
 	@ResponseBody
 	public List<Operateur> getOperateurs() {
-		
-		return operateurService.retrieveAllOperateurs();
+		List<Operateur> list = operateurService.retrieveAllOperateurs();
+		return list;
 	}
 
 	// http://localhost:8089/SpringMVC/operateur/retrieve-operateur/8
