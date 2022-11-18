@@ -29,7 +29,6 @@ pipeline {
         stage('SonarQube stage') {
                 steps {
                 echo 'SonarQube ...'
-                sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=molka2408'
                 }
             } 
         stage('Publish to Nexus'){
