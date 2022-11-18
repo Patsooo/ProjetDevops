@@ -60,6 +60,12 @@ pipeline {
                
             }
         }
+	stage('CI ===> CD') {
+         steps {
+          sh 'echo "Continuous Integration finished with sucess "'
+          sh 'echo "Starting Continuous Deployment ... "'
+           }
+    	}
         
         stage('Building our image') {
             steps {
