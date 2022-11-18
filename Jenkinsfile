@@ -10,24 +10,20 @@ pipeline {
         stage('Cleaning') {
                 steps {
                 echo 'cleaning the project'
-                sh 'mvn clean install -U'
+                sh 'mvn clean'
                 }
                 
-            }
-        stage('Compiling') {
-                steps {
-                sh 'mvn compile'
-                }
-            }
-        stage('Artefact Construction'){
-                steps{
-                sh 'mvn package'
-                }
             }
         stage('Unit tests'){
                 steps{
                 echo 'launching unit tests'
                 sh 'mvn test'
+                }
+            }
+        
+        stage('Artefact Construction'){
+                steps{
+                sh 'mvn package -Dmaven.test.skip=true'
                 }
             }
         stage('Publish to Nexus'){
