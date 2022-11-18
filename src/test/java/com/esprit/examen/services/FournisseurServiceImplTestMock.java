@@ -25,11 +25,11 @@ class FournisseurServiceImplTestMock {
     FournisseurServiceImpl fournisseurService;
 
 
-    Fournisseur fournisseur = new Fournisseur(1L, "TN619","delice",CategorieFournisseur.CONVENTIONNE);
+    Fournisseur fournisseur =  Fournisseur.builder().code("codefourn").libelle("fournisseur1").categorieFournisseur(CategorieFournisseur.ORDINAIRE).build();
     List<Fournisseur> fournisseurList = new ArrayList<Fournisseur>(){
         {
-            add(new Fournisseur(2L, "TN619","safia",CategorieFournisseur.ORDINAIRE));
-            add(new Fournisseur(3L, "TN619","sabrine",CategorieFournisseur.CONVENTIONNE));
+            add(Fournisseur.builder().code("codefourn").libelle("fournisseur2").categorieFournisseur(CategorieFournisseur.ORDINAIRE).build());
+            add(Fournisseur.builder().code("codefourn").libelle("fournisseur3").categorieFournisseur(CategorieFournisseur.ORDINAIRE).build());
         }
     };
     @Test
