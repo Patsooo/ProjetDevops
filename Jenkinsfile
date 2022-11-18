@@ -28,6 +28,8 @@ pipeline {
             }
         stage('SonarQube stage') {
                 steps {
+                echo 'SonarQube ...'
+
                 }
             } 
         stage('Publish to Nexus'){
