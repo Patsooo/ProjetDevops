@@ -36,9 +36,9 @@ public class OperateurController {
 	// http://localhost:8089/SpringMVC/operateur/add-operateur
 	@PostMapping("/add-operateur")
 	@ResponseBody
-	public Operateur addOperateur(@RequestBody Operateur op) {
+	public Operateur addOperateur(@RequestBody Operateur operateur) {
 		
-		return operateurService.addOperateur(op);
+		return operateurService.addOperateur(operateur);
 	}
 
 	
